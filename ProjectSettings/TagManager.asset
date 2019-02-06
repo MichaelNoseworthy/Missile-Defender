@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fire
   - BackWall
+  - MissileMousePointClick
+  - Explosion
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Wall
   - 
   - 
   - 

@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1286396386967478}
+  m_RootGameObject: {fileID: 1880438192653908}
   m_IsPrefabAsset: 1
---- !u!1 &1108699400230546
+--- !u!1 &1340459991166016
 GameObject:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4859631437071388}
-  - component: {fileID: 65091978061337314}
+  - component: {fileID: 4873448618266758}
+  - component: {fileID: 65550371023950742}
   m_Layer: 0
   m_Name: Collider1
   m_TagString: Untagged
@@ -27,33 +27,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1286396386967478
+--- !u!1 &1465584163958586
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4980714767508300}
-  - component: {fileID: 33407028025130812}
-  - component: {fileID: 23364152546565646}
-  - component: {fileID: 114402153651431794}
-  - component: {fileID: 136341741340384278}
-  m_Layer: 0
-  m_Name: MissileCapsule
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1432185896569916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4635164112937768}
+  - component: {fileID: 4908263333516748}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -61,53 +42,72 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4635164112937768
+--- !u!1 &1880438192653908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4136286600304332}
+  - component: {fileID: 33518572916698470}
+  - component: {fileID: 23660128335197554}
+  - component: {fileID: 136883313251994080}
+  - component: {fileID: 114162427785972162}
+  m_Layer: 0
+  m_Name: EnemyMissileCapsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4136286600304332
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1432185896569916}
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1880438192653908}
+  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: 246.243, y: 8.83, z: 67.099}
+  m_LocalScale: {x: 0.20000009, y: 0.20000039, z: 0.20000038}
   m_Children:
-  - {fileID: 4859631437071388}
-  m_Father: {fileID: 4980714767508300}
+  - {fileID: 4908263333516748}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4859631437071388
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!4 &4873448618266758
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108699400230546}
+  m_GameObject: {fileID: 1340459991166016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4635164112937768}
+  m_Father: {fileID: 4908263333516748}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4980714767508300
+--- !u!4 &4908263333516748
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286396386967478}
-  m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 246.243, y: 0.943, z: 67.099}
-  m_LocalScale: {x: 0.20000009, y: 0.20000039, z: 0.20000038}
+  m_GameObject: {fileID: 1465584163958586}
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4635164112937768}
-  m_Father: {fileID: 0}
+  - {fileID: 4873448618266758}
+  m_Father: {fileID: 4136286600304332}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!23 &23364152546565646
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23660128335197554
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286396386967478}
+  m_GameObject: {fileID: 1880438192653908}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -137,47 +137,47 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33407028025130812
+--- !u!33 &33518572916698470
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286396386967478}
+  m_GameObject: {fileID: 1880438192653908}
   m_Mesh: {fileID: 4300008, guid: 8877092c49d4cd445a536cee36849209, type: 3}
---- !u!65 &65091978061337314
+--- !u!65 &65550371023950742
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1108699400230546}
+  m_GameObject: {fileID: 1340459991166016}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 1.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114402153651431794
+--- !u!114 &114162427785972162
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286396386967478}
+  m_GameObject: {fileID: 1880438192653908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9ea0e4b725aef4785385a96b5f9fb6, type: 3}
+  m_Script: {fileID: 11500000, guid: c9c9f2ce804868043ab23713683d1f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MissileGoToPoint: {fileID: 0}
-  Explosion: {fileID: 1040591188664148, guid: 7d7a57fb026e33c47801044531efd1c7, type: 2}
-  moveSpeed: 1
-  distanceFromTarget: 0.1
+  Explosion: {fileID: 0}
+  moveSpeed: 45
+  distanceFromTarget: 0
   distance: 0
---- !u!136 &136341741340384278
+--- !u!136 &136883313251994080
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1286396386967478}
+  m_GameObject: {fileID: 1880438192653908}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
