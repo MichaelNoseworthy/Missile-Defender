@@ -37,8 +37,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1880438192653908}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 246.243, y: 1.568, z: 67.066}
+  m_LocalRotation: {x: 0.6883099, y: 0.16195533, z: 0.16195533, w: 0.6883099}
+  m_LocalPosition: {x: 244.88983, y: 7, z: 67.03}
   m_LocalScale: {x: 0.20000009, y: 0.20000039, z: 0.20000038}
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,6 +135,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   guidedMissile: 0
-  enter: 1
-  stay: 1
-  exit: 1
+  setDirectionMissile: 0
+  directionalMissile: 1

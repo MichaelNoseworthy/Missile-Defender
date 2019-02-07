@@ -5,6 +5,7 @@ using System;
 
 public class EnemyMissileMovement : MonoBehaviour {
 
+    Rigidbody m_Rigidbody;
     private GameObject[] Buildings;
     public GameObject MissileSetDestination;
     public GameObject MissileGoToPoint;
@@ -18,17 +19,29 @@ public class EnemyMissileMovement : MonoBehaviour {
     public static Collider[] colliders;//Array to place where the closest enemy AI is
     public float checkRadius = 100f;//Range to check for enemy AI
     public LayerMask checkLayers;//Which layer to check for the enemy.
-    public bool guidedMissile = false;
+
+    
+
     private bool MissileCollided = false;
 
+    //Missile Options:
+    public bool guidedMissile = false;
+    public bool setDirectionMissile = false;
+    public bool directionalMissile = false;
+
     //testing stuff below
-    public bool enter = true;
-    public bool stay = true;
-    public bool exit = true;
+    //public bool enter = true;
+    //public bool stay = true;
+    //public bool exit = true;
 
     // Use this for initialization
     void Start()
     {
+
+        //Fetch the Rigidbody component you attach from your GameObject
+        m_Rigidbody = GetComponent<Rigidbody>();
+
+
         if (guidedMissile)
         {
             colliders = Physics.OverlapSphere(transform.position, checkRadius, checkLayers);
@@ -36,29 +49,42 @@ public class EnemyMissileMovement : MonoBehaviour {
             Array.Sort(colliders, new DistanceComparer(transform));
             MissileGoToPoint = colliders[0].GetComponent<GameObject>();
         }
-        else
+        if (setDirectionMissile)
         {
             MissileGoToPoint = MissileSetDestination;
         }
+        if (directionalMissile)
+        {
+
+        }
+
         Launch();
     }
 
     // Update is called once per frame
     void Update()
     {
-        distance = Vector3.Distance(transform.position, MissileGoToPoint.transform.position);
-        if (distance < 0.2f)
+        if (distance < 0.2f && !directionalMissile)
         {
             DestinationReached = true;
 
             Instantiate(Explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
-        if (isLaunched && !DestinationReached && !MissileCollided)
+
+        if (isLaunched && !DestinationReached && !MissileCollided && !directionalMissile)
         {
+            distance = Vector3.Distance(transform.position, MissileGoToPoint.transform.position);
             MoveToward(MissileGoToPoint.transform);
             //transform.Translate(Vector3.down * Time.deltaTime * Input.GetAxis("Horizontal") * moveSpeed);
         }
+        
+        if (directionalMissile)
+        {
+            m_Rigidbody.velocity = transform.forward * moveSpeed;
+        }
+
+        //transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Horizontal") * moveSpeed);
     }
 
     public void Launch()
@@ -99,6 +125,11 @@ public class EnemyMissileMovement : MonoBehaviour {
         {
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "EnemyMissile")
+        {
+
+        }
+
         MissileCollided = true;
         Debug.Log("Hit Something");
         ContactPoint contact = collision.contacts[0];
@@ -109,7 +140,7 @@ public class EnemyMissileMovement : MonoBehaviour {
     }
 
 
-
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (enter)
@@ -152,5 +183,7 @@ public class EnemyMissileMovement : MonoBehaviour {
         Destroy(other.gameObject);
     }
     */
+
+    
 
 }

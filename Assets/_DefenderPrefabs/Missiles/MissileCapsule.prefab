@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissileGoToPoint: {fileID: 0}
   Explosion: {fileID: 1040591188664148, guid: 7d7a57fb026e33c47801044531efd1c7, type: 2}
-  moveSpeed: 1
+  moveSpeed: 3
   distanceFromTarget: 0.1
   distance: 0
 --- !u!114 &114471971785694512
