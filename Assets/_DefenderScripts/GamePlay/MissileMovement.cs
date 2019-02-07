@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class EnemyMissileMovement : MonoBehaviour {
 
-    private GameObject[] Buildings;
+public class MissileMovement : MonoBehaviour
+{
+
     public GameObject MissileGoToPoint;
     public GameObject Explosion;
     public float moveSpeed = 1.0f;
@@ -18,10 +18,7 @@ public class EnemyMissileMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Buildings = GameObject.FindGameObjectsWithTag("Building");
-        Array.Sort(Buildings, new DistanceComparer(transform));
-        MissileGoToPoint = Buildings[0];
-        Launch();
+
     }
 
     // Update is called once per frame
@@ -31,17 +28,14 @@ public class EnemyMissileMovement : MonoBehaviour {
         if (distance < 0.1f)
         {
             if (!doOnce)
-                Instantiate(Explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(Explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             doOnce = true;
-            //this code below does not want to work
-            //MissileGoToPoint.GetComponent<DestroyObject>().DestroyMe();
+            DestinationReached = true;
             Destroy(gameObject);
-            //DestroyMe();
-            //Destroy(gameObject);
         }
-        if (isLaunched)
-            MoveToward(MissileGoToPoint.transform);
-
+        if (isLaunched && !DestinationReached)
+        MoveToward(MissileGoToPoint.transform);
+        
     }
 
     public void Launch()
@@ -60,16 +54,19 @@ public class EnemyMissileMovement : MonoBehaviour {
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * moveSpeed);
         transform.transform.position += transform.transform.forward * moveSpeed * Time.deltaTime;
     }
+    
 
-    void OnCollisionEnter(Collider collision)
+    void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.tag == "Explosion")
+        if (collision.gameObject.tag == "EnemyMissile")
+        {
+            if (!doOnce)
+                Instantiate(Explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            doOnce = true;
+            DestinationReached = true;
             Destroy(gameObject);
-
-        if (collision.gameObject.tag == "Building")
-            Destroy(gameObject);
+        }
     }
-
+    
 
 }
