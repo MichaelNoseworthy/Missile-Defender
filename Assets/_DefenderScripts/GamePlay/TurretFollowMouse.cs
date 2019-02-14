@@ -18,32 +18,46 @@ public class TurretFollowMouse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         /*
-        target.transform.position = cam.ScreenToWorldPoint(Input.mousePosition);
-        Turret.gameObject.transform.LookAt(target.transform);
-        */
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        // Determine the point where the cursor ray intersects the plane.
-        // This will be the point that the object must look towards to be looking at the mouse.
-        // Raycasting to a Plane object only gives us a distance, so we'll have to take the distance,
-        //   then find the point along that ray that meets that distance.  This will be the point
-        //   to look at.
-        float hitdist = 0.0f;
-        // If the ray is parallel to the plane, Raycast will return false.
-        
-        RaycastHit hit;
-        int layerMask = 1 << 9;
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            // Get the point along the ray that hits the calculated distance.
-            Vector3 targetPoint = ray.GetPoint(hitdist);
+            
+            target.transform.position = cam.ScreenToWorldPoint(Input.mousePosition);
+            Turret.gameObject.transform.LookAt(target.transform);
+            
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            // Determine the point where the cursor ray intersects the plane.
+            // This will be the point that the object must look towards to be looking at the mouse.
+            // Raycasting to a Plane object only gives us a distance, so we'll have to take the distance,
+            //   then find the point along that ray that meets that distance.  This will be the point
+            //   to look at.
+            float hitdist = 0.0f;
+            // If the ray is parallel to the plane, Raycast will return false.
 
-            // Determine the target rotation.  This is the rotation if the transform looks at the target point.
-            Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+            RaycastHit hit;
+            int layerMask = 1 << 9;
 
-            // Smoothly rotate towards the target point.
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+            {
+                // Get the point along the ray that hits the calculated distance.
+                Vector3 targetPoint = ray.GetPoint(hitdist);
+
+                // Determine the target rotation.  This is the rotation if the transform looks at the target point.
+                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+
+                // Smoothly rotate towards the target point.
+                //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                //transform.rotation = Quaternion.LookRotation(targetPoint, Vector3.left);
+            }
+
         }
+        
 
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = cam.ScreenToWorldPoint(mousePosition);
+
+        Vector3 direction = new Vector3(mousePosition.x - Turret.transform.position.x, mousePosition.y - Turret.transform.position.y, mousePosition.z - Turret.transform.position.z);
+
+        Turret.transform.up = direction;
+        */
     }
 }

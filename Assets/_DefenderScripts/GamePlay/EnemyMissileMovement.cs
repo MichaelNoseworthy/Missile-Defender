@@ -125,6 +125,10 @@ public class EnemyMissileMovement : MonoBehaviour {
         {
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "Launcher")
+        {
+            Destroy(collision.gameObject);
+        }
         if (collision.gameObject.tag == "EnemyMissile")
         {
 
