@@ -643,6 +643,15 @@ Prefab:
       objectReference: {fileID: 492933986}
     - target: {fileID: 1091055560630164, guid: d7cf28ac0dae3654aa271ed9f976ca62, type: 2}
       propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 114082766812852642, guid: d7cf28ac0dae3654aa271ed9f976ca62,
+        type: 2}
+      propertyPath: isPaused
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052935931802938, guid: d7cf28ac0dae3654aa271ed9f976ca62, type: 2}
+      propertyPath: m_TagString
       value: Launcher
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -972,6 +981,15 @@ Prefab:
       value: 
       objectReference: {fileID: 534669904}
     - target: {fileID: 1091055560630164, guid: d7cf28ac0dae3654aa271ed9f976ca62, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 114082766812852642, guid: d7cf28ac0dae3654aa271ed9f976ca62,
+        type: 2}
+      propertyPath: isPaused
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052935931802938, guid: d7cf28ac0dae3654aa271ed9f976ca62, type: 2}
       propertyPath: m_TagString
       value: Launcher
       objectReference: {fileID: 0}

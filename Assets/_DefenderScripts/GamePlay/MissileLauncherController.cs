@@ -17,4 +17,9 @@ public class MissileLauncherController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public bool getisPaused()
+    {
+        return isPaused;
+    }
 }
