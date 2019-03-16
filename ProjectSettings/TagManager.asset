@@ -11,6 +11,7 @@ TagManager:
   - Building
   - EnemyMissile
   - Launcher
+  - MainUI
   layers:
   - Default
   - TransparentFX

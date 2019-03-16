@@ -19,6 +19,7 @@ public class EnemyMissileMovement : MonoBehaviour {
     public static Collider[] colliders;//Array to place where the closest enemy AI is
     public float checkRadius = 100f;//Range to check for enemy AI
     public LayerMask checkLayers;//Which layer to check for the enemy.
+    private GameManager GameManager;
 
     
 
@@ -37,7 +38,7 @@ public class EnemyMissileMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        GameManager = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody>();
 
@@ -57,7 +58,7 @@ public class EnemyMissileMovement : MonoBehaviour {
         {
 
         }
-
+        GameManager.MissileCountAdd();
         Launch();
     }
 
@@ -123,15 +124,17 @@ public class EnemyMissileMovement : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Building")
         {
+            GameManager.MissileCountRemove();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "Launcher")
         {
+            GameManager.MissileCountRemove();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "EnemyMissile")
         {
-
+            
         }
 
         MissileCollided = true;
@@ -140,6 +143,7 @@ public class EnemyMissileMovement : MonoBehaviour {
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
         Instantiate(Explosion, pos, rot);
+        GameManager.MissileCountRemove();
         Destroy(gameObject);
     }
 
