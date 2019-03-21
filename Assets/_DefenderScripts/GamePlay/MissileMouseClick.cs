@@ -19,9 +19,6 @@ public class MissileMouseClick : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        //MissileLaunchers = GameObject.FindGameObjectsWithTag("Launcher");
-        //minDistance = Vector3.zero;
-        //minDistance.x = MissileLaunchers[0].transform.position.x;
         GameManager = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
     }
 
@@ -48,12 +45,8 @@ public class MissileMouseClick : MonoBehaviour {
                     temp += ", z:";
                     temp += hit.point.z.ToString();
                     Debug.Log(temp);
-
-                    //Add Network code
-
                     //find a launch point
-
-
+                    
                     /*
                      * Measure distance between each turret from the mouse point
                      * convert distance from negative to positive
@@ -73,10 +66,6 @@ public class MissileMouseClick : MonoBehaviour {
                      * dist = turret2 - point
                      * 
                      */
-
-                    float dist1;
-                    float dist2;
-
                     for (int i = 0; i < MissileLaunchers.Length; i++)
                     {
                         //hit.point.x;
@@ -155,12 +144,15 @@ public class MissileMouseClick : MonoBehaviour {
 
                         if (fireturret >= 0)
                         {
-                            SpawnPoint.transform.position = MissileLaunchers[fireturret].transform.position;
+                                //creates an invisible spot on the screen
+                                //then creates a missile that heads towards that spawn point
+                            SpawnPoint.transform.position = MissileLaunchers[fireturret].GetComponent<MissileLauncherController>().SpawnPoint.transform.position;
                             SpawnMissileGoToPoint = Instantiate(SpawnPoint, new Vector3(hit.point.x, hit.point.y, hit.point.z), Quaternion.identity);
                             SpawnedMissile = Instantiate(Missile, new Vector3(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y, SpawnPoint.transform.position.z), SpawnPoint.transform.rotation);
                             SpawnedMissile.gameObject.GetComponent<MissileMovement>().MissileGoToPoint = SpawnMissileGoToPoint;
                             SpawnedMissile.gameObject.GetComponent<MissileMovement>().Launch();
                             GameManager.LowerMissileCount();
+                            Destroy(SpawnMissileGoToPoint, 10); //after ten seconds, destroy object (to prevent leaks)
                         }
                         else
                         {
