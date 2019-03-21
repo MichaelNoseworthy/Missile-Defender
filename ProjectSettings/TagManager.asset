@@ -12,6 +12,8 @@ TagManager:
   - EnemyMissile
   - Launcher
   - MainUI
+  - BuyMenu
+  - LauncherPlatform
   layers:
   - Default
   - TransparentFX

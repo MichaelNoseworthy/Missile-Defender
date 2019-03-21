@@ -1,0 +1,37 @@
+Second build of Missile Defender
+
+I will be around for your 12pm class if you have any comments/questions
+
+How to play:  
+Double click on Missile Defender.exe
+You need to prevent the enemy missiles from hitting your buildings
+Use the left mouse button to target on the screen where you want missiles or explosions to intercept the enemy missiles
+
+New features:
+Multiple missile launchers that launch missiles depending on where you target the mouse
+Added more buildings
+Game duration lasts 30 seconds before the "turn" (day) ends and then goes into the buying screen
+Buying screen that allows the player to increase missile and explosion abilities
+When all Housing buildings are destroyed the amount of days the player lasted is displayed
+For this build I will leave in the debugging information that will show in the middle of the screen so that professor will understand what is going on
+Armageddon button added so that one can further test all buildings getting destroyed very fast - The timer will be set too high to allow for reaching the next day
+Each building level is worth $50
+
+
+Known issues to fix:
+Player missiles do a circle if targetted too close to the launcher - Due to this missiles will self destruct within 5 seconds
+Left and right launchers shoot missiles from outside of the spawn point
+Buying for missile launchers and buildings is not working and UI isn't lining up depending upon player resolution
+Missiles are not going in the right directions depending on which part of the screen it appears on (this worked before...)
+
+
+TODO:
+Networking (co-op) between two players (Just starting with Unity Networking as of last week)
+Buttons for buy screen do not line up (find out about UI Scaling)
+Assets for better looking buttons
+Make game turns last longer after every day.
+Find a better font for the game text
+Make explosions disappear(destroy) before buying screen appears
+Add "How To Play" to the main menu
+Max levels for increases
+Sound setup on main menu and in game - I consider this a part of polish

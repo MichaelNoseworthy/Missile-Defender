@@ -10,7 +10,7 @@ public class EnemyMissileMovement : MonoBehaviour {
     public GameObject MissileSetDestination;
     public GameObject MissileGoToPoint;
     public GameObject Explosion;
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 0.5f;
     public float distanceFromTarget = 0.0f;
     bool isLaunched = false;
     public float distance;
@@ -41,6 +41,7 @@ public class EnemyMissileMovement : MonoBehaviour {
         GameManager = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody>();
+        moveSpeed = GameManager.EnemyMissileSpeed;
 
 
         if (guidedMissile)
@@ -124,12 +125,20 @@ public class EnemyMissileMovement : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Building")
         {
-            GameManager.MissileCountRemove();
+            if (doOnce == false)
+            {
+                doOnce = true;
+                GameManager.MissileCountRemove();
+            }
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "Launcher")
+        if (collision.gameObject.tag == "LauncherPlatform")
         {
-            GameManager.MissileCountRemove();
+            if (doOnce == false)
+            {
+                doOnce = true;
+                GameManager.MissileCountRemove();
+            }
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "EnemyMissile")
@@ -143,7 +152,11 @@ public class EnemyMissileMovement : MonoBehaviour {
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
         Instantiate(Explosion, pos, rot);
-        GameManager.MissileCountRemove();
+        if (doOnce == false)
+        {
+            doOnce = true;
+            GameManager.MissileCountRemove();
+        }
         Destroy(gameObject);
     }
 

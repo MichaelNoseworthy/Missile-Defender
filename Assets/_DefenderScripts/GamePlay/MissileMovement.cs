@@ -14,11 +14,13 @@ public class MissileMovement : MonoBehaviour
     public float distance;
     private bool doOnce = false;
     private bool DestinationReached = false;
+    private GameManager GameManager;
 
     // Use this for initialization
     void Start()
     {
-
+        GameManager = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
+        moveSpeed = GameManager.PlayerMissileSpeed;
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class MissileMovement : MonoBehaviour
         }
         if (isLaunched && !DestinationReached)
         MoveToward(MissileGoToPoint.transform);
-        
+        Destroy(gameObject, 5);
     }
 
     public void Launch()
