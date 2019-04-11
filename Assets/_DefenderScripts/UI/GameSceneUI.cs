@@ -22,7 +22,7 @@ public class GameSceneUI : MonoBehaviour {
 	void Start () {
         GM = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
         GameLevel.text = GM.GameLevel.ToString();
-        GameLevelPanel.SetActive(false);
+        GameLevelPanel.SetActive(true);
         GameDebugInfoPanel.SetActive(false);
         GameOverPanel.SetActive(false);
     }

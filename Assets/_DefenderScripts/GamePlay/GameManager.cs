@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour {
     private GameObject BuyMenu;
     private GameObject ScreenInfoUI;
     private GameObject PauseMenu;
-    private GameObject GameLevelPanel;
+    public GameObject GameLevelPanel;
+    private GameObject YDistanceErrorText;
     private Buying BuyMenuScript;
     private GameObject[] CountMoney; //Grabs gameobjects so the money count can happen
     private BuildingMoneyCounter[] CountMoneyScript; //Grabs gameobjects so the money count can happen
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour {
     public bool showGameLevel = true;
     public int EnemyMissileCount = 0;
 
+    public bool YDistanceBool = false;
+    float YDistancetime = 1.0f;
 
     public float buildingsCount = 0;
     public float launchersCount = 0;
@@ -78,11 +81,13 @@ public class GameManager : MonoBehaviour {
         ScreenInfoUI = GameObject.Find("/MainUI/ScreenInfo");
         BuyMenu = GameObject.Find("/MainUI/BuyMenu");
         PauseMenu = GameObject.Find("/MainUI/PausedMenu");
+        YDistanceErrorText = GameObject.Find("/MainUI/YDistance");
         BuyMenuScript = GameObject.Find("/MainUI/BuyMenu").GetComponent<Buying>();
         MidScreen = LeftScreen + ((RightScreen - LeftScreen) / 2);
         Timer = resetTimer;
         gameMode = GameMode.GameRestart;
 
+        YDistanceErrorText.SetActive(false);
         PauseMenu.SetActive(false);
 
         //Settings
@@ -100,6 +105,17 @@ public class GameManager : MonoBehaviour {
         //Game is playing
         if (gameMode == GameMode.GameRunning)
         {
+            if (YDistanceBool == true)
+            {
+                YDistanceErrorText.SetActive(true);
+                YDistancetime -= Time.deltaTime;
+                if (YDistancetime <= 0)
+                {
+                    YDistanceErrorText.SetActive(false);
+                    YDistanceBool = false;
+                    YDistancetime = 1.0f;
+                }
+            }
             ScreenInfoUI.SetActive(true);
             Timer -= Time.deltaTime;
             levelTime -= Time.deltaTime;
@@ -195,9 +211,9 @@ public class GameManager : MonoBehaviour {
             Timer = resetTimer;
             levelTime = 15f;
             PlayerMissileAmountLeft = PlayerMissileAmount;
-            gameMode = GameMode.GameStart;
             showGameLevel = true;
-            //GameLevelPanel.SetActive(true);
+            GameLevelPanel.SetActive(true);
+            gameMode = GameMode.GameStart;
         }
 
     }
@@ -244,6 +260,7 @@ public class GameManager : MonoBehaviour {
         BuyMenu.SetActive(false);
         MainUIGameStartScreen.SetActive(true);
         ScreenInfoUI.SetActive(true);
+        GameLevel += 1;
         gameMode = GameMode.GameRestart;
     }
 
