@@ -38,6 +38,11 @@ public class MissileMovement : MonoBehaviour
         if (isLaunched && !DestinationReached)
         MoveToward(MissileGoToPoint.transform);
         Destroy(gameObject, 5);
+
+        if (GameManager.gameMode == GameManager.GameMode.GameBuying)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Launch()

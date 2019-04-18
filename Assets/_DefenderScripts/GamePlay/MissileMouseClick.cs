@@ -21,19 +21,25 @@ public class MissileMouseClick : MonoBehaviour {
     // Use this for initialization
     void Start() {
         GameManager = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if (GameManager.gameMode == GameManager.GameMode.GameRestart)
+        {
+            //MissileLaunchers = GameObject.FindGameObjectsWithTag("Launcher");
+        }
+
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (GameManager.getMissileCountInt() > 0)
             if (GameManager.gameMode == GameManager.GameMode.GameRunning || GameManager.gameMode == GameManager.GameMode.GameEnding)
             {
-                MissileLaunchers = GameObject.FindGameObjectsWithTag("Launcher");
-                Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
+                    MissileLaunchers = GameObject.FindGameObjectsWithTag("Launcher");
+                    Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 int layerMask = 1 << 9;
 
@@ -45,7 +51,7 @@ public class MissileMouseClick : MonoBehaviour {
                     temp += hit.point.y.ToString();
                     temp += ", z:";
                     temp += hit.point.z.ToString();
-                    Debug.Log(temp);
+                    //Debug.Log(temp);
                         //find a launch point
 
                         /*
@@ -74,11 +80,12 @@ public class MissileMouseClick : MonoBehaviour {
                                 //hit.point.x;
                                 if (MissileLaunchers[i].gameObject.GetComponent<MissileLauncherController>().isPaused == true)
                                 {
-                                    turretDistance.Add(10000);
+                                    //turretDistance.Add(10000);
                                 }
                                 else
                                 {
                                     turretDistance.Add(NegativeToPositive(MissileLaunchers[i].transform.position.x - hit.point.x));
+                                    //Debug.Log(turretDistance[i]);
                                 }
 
 
@@ -119,7 +126,7 @@ public class MissileMouseClick : MonoBehaviour {
                             {
                                 int fireturret = -1;
                                 //int availableturret = -1;
-                                float minDist = 0;// MissileLaunchers[0].transform.position.x;
+                                float minDist = 0;//GameManager.MidScreen;// MissileLaunchers[0].transform.position.x;
 
                                 for (int i = 0; i < MissileLaunchers.Length; i++)
                                 {
@@ -134,13 +141,21 @@ public class MissileMouseClick : MonoBehaviour {
 
                                         if (minDist == 0)
                                         {
-                                            minDist = turretDistance[i];
+                                            minDist = turretDistance[0];
                                         }
 
                                         if (turretDistance[i] <= minDist)
                                         {
                                             minDist = turretDistance[i];
+                                            
                                             fireturret = i;
+                                            Debug.Log("minDist: " + minDist + " Turret: " + fireturret);
+                                            if (minDist >= 0 && minDist <= 1)
+                                            {
+                                                // Debug.Log("Zero Point: " + MissileLaunchers[0].transform.position.x);
+                                                //fireturret = 0;
+                                                //continue;
+                                            }
                                         }
                                     }
                                 }
@@ -178,6 +193,7 @@ public class MissileMouseClick : MonoBehaviour {
 
                 turretDistance.Clear();
                 activeTurrets.Clear();
+                MissileLaunchers = null;
             }
         }
     }

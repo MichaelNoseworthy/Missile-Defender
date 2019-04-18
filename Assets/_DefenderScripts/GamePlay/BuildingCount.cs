@@ -17,8 +17,6 @@ public class BuildingCount : MonoBehaviour {
     // Use this for initialization
     void Start () {
         GameManager = GameObject.Find("/GameManagerObject").GetComponent<GameManager>();
-
-        
     }
 	
 	// Update is called once per frame

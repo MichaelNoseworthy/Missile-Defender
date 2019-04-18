@@ -15,7 +15,7 @@ public class GameSceneUI : MonoBehaviour {
     public GameObject GameLevelPanel;
     public GameObject GameDebugInfoPanel;
     private GameManager GM;
-    private bool debugging = true;
+    private bool debugging = false;
     public float time = 1.0f;
 
 	// Use this for initialization

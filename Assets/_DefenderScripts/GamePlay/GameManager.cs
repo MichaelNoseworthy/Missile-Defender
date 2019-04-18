@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     //Screen width goes from 237 to 259.5
-    private float LeftScreen = 240.274f;
-    private float RightScreen = 250.662f;
+    private const float LeftScreen = 243.274f;
+    private const float RightScreen = 252.662f;
     public float MidScreen;
 
     //Rotation limits for Enemy Missiles:
-    private float LeftRotation = 140f;
-    private float RightRotation = 40f;
+    private const float LeftRotation = 140f;
+    private const float RightRotation = 40f;
 
     private GameSceneUI MainUIScript; //To be able to control it
     private GameObject MainUI; //To be able to control it
@@ -42,10 +42,14 @@ public class GameManager : MonoBehaviour {
 
     //Player Missiles:
     public float PlayerMissileSpeed;
+    private float PlayerMissileSpeedMax = 9.0f;//9;
     public float PlayerExplosionSize;
+    public float PlayerExplosionSizeMax = 3;
     public float PlayerExplosionTime;
+    public float PlayerExplosionTimeMax = 6;
     public int PlayerMissileAmount = 15;
     public int PlayerMissileAmountLeft = 15;
+    private float tempRotationFloat = 0;
 
     public enum GameMode
     {
@@ -128,20 +132,24 @@ public class GameManager : MonoBehaviour {
             if (Timer <= 0)
             {
                 //
-                DirectionalMissile.transform.position = new Vector3(Random.Range(LeftScreen, RightScreen), 7f, 67.03f);
-                if (DirectionalMissile.transform.position.x < MidScreen)
+                DirectionalMissile.transform.position = new Vector3(Random.Range(RightScreen, LeftScreen), 7f, 67.03f);
+                if (DirectionalMissile.transform.position.x < LeftScreen)
                 {
-                    LeftScreen = 90f;
+                    tempRotationFloat = MissileRotationPosition(0);
                 }
-                if (DirectionalMissile.transform.position.x > MidScreen)
+                else if (DirectionalMissile.transform.position.x > RightScreen)
                 {
-                    RightScreen = 90f;
+                    tempRotationFloat = MissileRotationPosition(1);
                 }
-                DirectionalMissile.transform.rotation = Quaternion.Euler(Random.Range(LeftRotation, RightRotation), -90f, -90f);
+                else
+                {
+                    tempRotationFloat = MissileRotationPosition(2);
+                }
+                DirectionalMissile.transform.rotation = Quaternion.Euler(tempRotationFloat, -90f, -90f);
                 SpawnedMissile = Instantiate(DirectionalMissile, DirectionalMissile.transform.position, DirectionalMissile.transform.rotation);
                 //SpawnedMissile.GetComponent<EnemyMissileMovement>().directionalMissile = true;
-                LeftScreen = 237f;
-                RightScreen = 259.5f;
+                //LeftScreen = 237f;
+                //RightScreen = 259.5f;
                 Timer = resetTimer;
             }
 
@@ -261,11 +269,19 @@ public class GameManager : MonoBehaviour {
         MainUIGameStartScreen.SetActive(true);
         ScreenInfoUI.SetActive(true);
         GameLevel += 1;
+
+        //increase difficulty
+        if (EnemyMissileSpeed < 9)
+        EnemyMissileSpeed += 0.5f;
+        if (levelTime <= 60)
+        levelTime += 5;
+
         gameMode = GameMode.GameRestart;
     }
 
     public void PlayerIncreaseMissileSpeed()
     {
+        if (PlayerMissileSpeedMax >= PlayerMissileSpeed)
         if (BuyMenuScript.money >= 250)
         {
             BuyMenuScript.money -= 250;
@@ -292,6 +308,7 @@ public class GameManager : MonoBehaviour {
     }
     public void PlayerIncreaseExplosionSpeed()
     {
+        if (PlayerExplosionSizeMax >= PlayerExplosionSize)
         if (BuyMenuScript.money >= 250)
         {
             BuyMenuScript.money -= 250;
@@ -306,6 +323,7 @@ public class GameManager : MonoBehaviour {
 
     public void PlayerIncreaseExplosionTime()
     {
+        if (PlayerExplosionTimeMax >= PlayerExplosionTime)
         if (BuyMenuScript.money >= 250)
         {
             BuyMenuScript.money -= 250;
@@ -325,5 +343,20 @@ public class GameManager : MonoBehaviour {
         Timer = resetTimer;
         levelTime = 15000f;
         PlayerMissileAmountLeft = 0;
+    }
+
+    public float MissileRotationPosition(int value)
+    {
+        if (value == 0)
+        {
+            return Random.Range(90, RightRotation);
+        }
+        if (value == 1)
+        {
+            return Random.Range(LeftRotation, 90);
+        }
+
+
+            return Random.Range(LeftRotation, RightRotation);
     }
 }

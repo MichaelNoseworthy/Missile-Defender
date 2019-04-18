@@ -23,5 +23,10 @@ public class ExplosionExpand : MonoBehaviour {
         //if (transform.localScale.x >= 1.0f)
         if (time >= timer)
             Destroy(gameObject);
+
+        if (GameManager.gameMode == GameManager.GameMode.GameBuying)
+        {
+            Destroy(gameObject);
+        }
     }
 }

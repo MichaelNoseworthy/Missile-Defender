@@ -132,6 +132,7 @@ public class EnemyMissileMovement : MonoBehaviour {
             }
             Destroy(collision.gameObject);
         }
+        /*
         if (collision.gameObject.tag == "LauncherPlatform")
         {
             if (doOnce == false)
@@ -141,9 +142,10 @@ public class EnemyMissileMovement : MonoBehaviour {
             }
             Destroy(collision.gameObject);
         }
+        */
         if (collision.gameObject.tag == "EnemyMissile")
         {
-            
+            Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
         }
 
         MissileCollided = true;
